@@ -84,7 +84,7 @@
             clearTimeout(tid);
             tid = setTimeout(refreshRem, 300);
         }
-    }, false);
+    }, false);j
 
     if (doc.readyState === 'complete') {
         doc.body.style.fontSize = 12 * dpr + 'px';

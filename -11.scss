@@ -1,0 +1,27 @@
+*{padding:0;margin:0;}
+@function px2em($px, $base-font-size: 24px) {
+  @if (unitless($px)) {
+    @warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels for you";
+    @return px2em($px + 0px); // That may fail.
+  } @else if (unit($px) == em) {
+    @return $px;
+  }
+  @return ($px / $base-font-size) * 1em;
+}
+
+@mixin px2px($px){
+  font-size:($px/2)*1px;
+  [data-dpr="2"] & {font-size:$px*1px;}
+  [data-dpr="3"] &{font-size:($px/2*3)*1px;}
+}
+body{font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}
+nav{background:#91d4da;height:px2em(88px);line-height:px2em(88px);text-align:center;
+  color:white;overflow:hidden;
+  .nav-back{@include px2px(32);float:left;
+  }
+  .nav-back:before{content:"\003C";@include px2px(36);display:inline-block;margin-left:px2em(24px);margin-right:px2em(12px);}
+  .nav-title{@include px2px(36);}}
+
+
+
+
